@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8ufjlsnjgvm5"]
+
+[ext_resource type="Script" path="res://scenes/scripts/level.gd" id="1_lul06"]
+[ext_resource type="Texture2D" uid="uid://08foohaucchd" path="res://assets/sprites/bg/green-grass-bg.jpg" id="2_o46ry"]
+[ext_resource type="AudioStream" uid="uid://dtsq0e01185s" path="res://assets/music/game-music-loop-7-145285.mp3" id="3_osqpd"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_lul06")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_osqpd")
+volume_db = -10.935
+autoplay = true
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(2549, 1649)
+scale = Vector2(1, 0.966)
+texture = ExtResource("2_o46ry")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 92.0
+offset_bottom = 58.0
+text = "GODOT"
+
+[node name="Fruits" type="Node2D" parent="."]
+
+[node name="FruitTimer" type="Timer" parent="."]
+wait_time = 0.25
+autostart = true
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="timeout" from="FruitTimer" to="." method="_on_fruit_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
